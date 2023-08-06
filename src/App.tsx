@@ -1,5 +1,3 @@
-import { greet } from "./utils/greet";
-
 function App(): JSX.Element {
   return <h1>Todo List App</h1>;
 }
