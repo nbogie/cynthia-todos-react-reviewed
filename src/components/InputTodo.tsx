@@ -1,7 +1,7 @@
 import getErrorMessage from "../utils/getErrorMessage";
 import { useState } from "react";
 import axios from "axios";
-import TodoTask from "./TodoTaskType";
+import TodoType from "./TodoTaskType";
 
 export default function InputTodo() {
   const [todoInput, setTodoInput] = useState<string>("");
@@ -10,7 +10,7 @@ export default function InputTodo() {
     const apiBaseURL = "http://localhost:4000";
     event.preventDefault();
     try {
-      const todoData: TodoTask = {
+      const todoData: TodoType = {
         description: todoInput,
         creationDate: new Date(),
         completed: false,

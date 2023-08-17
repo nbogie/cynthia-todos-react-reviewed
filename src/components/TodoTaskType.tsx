@@ -1,4 +1,4 @@
-export default interface TodoTask {
+export default interface TodoType {
   description: string;
   creationDate: Date;
   completed: boolean;
