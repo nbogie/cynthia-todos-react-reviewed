@@ -7,7 +7,7 @@ export default function InputTodo() {
   const [todoInput, setTodoInput] = useState<string>("");
 
   const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
-    const apiBaseURL = "http://localhost:4000";
+    const apiBaseURL = "https://cynthia-todos.onrender.com";
     event.preventDefault();
     try {
       const todoData: TodoType = {
@@ -15,6 +15,7 @@ export default function InputTodo() {
         creationDate: new Date(),
         completed: false,
       };
+      setTodoInput("");
       console.log("the to do data", todoData);
       const response = await axios.post(apiBaseURL + "/todos", todoData);
       console.log(response);
@@ -29,7 +30,6 @@ export default function InputTodo() {
 
   return (
     <>
-      <h1>Input Todo</h1>
       <form className="todo-form" onSubmit={handleSubmitForm}>
         <input
           type="text"
