@@ -1,7 +1,7 @@
 import getErrorMessage from "../utils/getErrorMessage";
 import { useState } from "react";
 import axios from "axios";
-import TodoItem from "./TodoTaskType";
+import { TodoItem } from "./TodoTaskType";
 import { apiBaseURL } from "../utils/apiBaseURL";
 
 export default function InputTodo() {
