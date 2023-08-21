@@ -1,22 +1,21 @@
 import getErrorMessage from "../utils/getErrorMessage";
 import { useState } from "react";
 import axios from "axios";
-import TodoType from "./TodoTaskType";
+import TodoItem from "./TodoTaskType";
+import { apiBaseURL } from "../utils/apiBaseURL";
 
 export default function InputTodo() {
   const [todoInput, setTodoInput] = useState<string>("");
 
   const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
-    const apiBaseURL = "https://cynthia-todos.onrender.com";
     event.preventDefault();
     try {
-      const todoData: TodoType = {
+      const todoData: TodoItem = {
         description: todoInput,
         creationDate: new Date(),
         completed: false,
       };
       setTodoInput("");
-      console.log("the to do data", todoData);
       const response = await axios.post(apiBaseURL + "/todos", todoData);
       console.log(response);
     } catch (error) {
