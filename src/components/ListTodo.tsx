@@ -5,6 +5,7 @@ import { apiBaseURL } from "../utils/apiBaseURL";
 import { TodoDB, TodoItem } from "./TodoTaskType";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
+import EditTodo from "./EditTodo";
 
 export default function ListTodo() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -25,7 +26,6 @@ export default function ListTodo() {
           completed,
         };
       });
-      console.log(allTodoData);
       setTodos(allTodoData);
     } catch (error) {
       console.error(getErrorMessage(error));
@@ -38,16 +38,41 @@ export default function ListTodo() {
   const handleDelete = async (todoId: number) => {
     try {
       const deleteTodo = await axios.delete(`${apiBaseURL}/todos/${todoId}}`);
-      setTodos(todos.filter((todo) => todo.todoId !== todoId));
+      const updatedTodos = todos.filter((todo) => todo.todoId !== todoId);
+      setTodos(updatedTodos);
+    } catch (error) {
+      console.error(getErrorMessage(error));
+    }
+  };
+
+  const toggleComplete = async (todo: TodoItem) => {
+    try {
+      const todoData: TodoItem = {
+        description: todo.description,
+        creationDate: todo.creationDate,
+        completed: !todo.completed,
+      };
+      console.log("completed status", todo.completed);
+      const response = await axios.patch(
+        `${apiBaseURL}/todos/${todo.todoId}}`,
+        todoData
+      );
+      const updatedTodos = todos.map((existingTodo) =>
+        existingTodo.todoId === todo.todoId
+          ? { ...existingTodo, completed: !existingTodo.completed }
+          : existingTodo
+      );
+      setTodos(updatedTodos);
+      console.log(response);
     } catch (error) {
       console.error(getErrorMessage(error));
     }
   };
 
   const listAllTodos = todos.map((eachTodo) => (
-    <Fragment key={eachTodo.todoId}>
-      <li>
-        {eachTodo.description}
+    <div key={eachTodo.todoId}>
+      {eachTodo.description}
+      <div>
         <button>
           <LuEdit />
         </button>
@@ -58,12 +83,9 @@ export default function ListTodo() {
         >
           <MdOutlineDelete />
         </button>
-      </li>
-    </Fragment>
+      </div>
+      <input type="checkbox" onChange={() => toggleComplete(eachTodo)} />
+    </div>
   ));
-  return (
-    <>
-      <ul>{listAllTodos}</ul>
-    </>
-  );
+  return <>{listAllTodos}</>;
 }
