@@ -17,7 +17,6 @@ export default function InputTodo() {
       };
       setTodoInput("");
       const response = await axios.post(apiBaseURL + "/todos", todoData);
-      console.log(response);
     } catch (error) {
       console.error(getErrorMessage(error));
     }
