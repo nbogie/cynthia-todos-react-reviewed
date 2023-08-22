@@ -16,6 +16,7 @@ export default function InputTodo() {
         completed: false,
       };
       setTodoInput("");
+      // eslint-disable-next-line
       const response = await axios.post(apiBaseURL + "/todos", todoData);
     } catch (error) {
       console.error(getErrorMessage(error));

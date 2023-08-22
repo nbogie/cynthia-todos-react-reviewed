@@ -39,6 +39,7 @@ export default function ListTodo() {
 
   const handleDelete = async (todoId: number) => {
     try {
+      // eslint-disable-next-line
       const deleteTodo = await axios.delete(`${apiBaseURL}/todos/${todoId}}`);
       const updatedTodos = todos.filter((todo) => todo.todoId !== todoId);
       setTodos(updatedTodos);
@@ -54,6 +55,7 @@ export default function ListTodo() {
         creationDate: todo.creationDate,
         completed: !todo.completed,
       };
+      // eslint-disable-next-line
       const response = await axios.patch(
         `${apiBaseURL}/todos/${todo.todoId}}`,
         todoData
@@ -80,6 +82,7 @@ export default function ListTodo() {
         creationDate: todo.creationDate,
         completed: todo.completed,
       };
+      // eslint-disable-next-line
       const response = await axios.patch(
         `${apiBaseURL}/todos/${todo.todoId}}`,
         todoData
