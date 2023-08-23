@@ -32,6 +32,18 @@ In your terminal run :
 yarn start
 ```
 
+## Roadmap
+
+- [x] Add input for todo and post to server
+- [x] Fetch todos from database and render the list of todos
+- [x] Complete a task and update the database
+- [x] Edit a todo task and update the database
+- [ ] Add styling
+
+## Backend server
+
+[Git repo to express server using PostgreSQL database](https://github.com/cynthiacodes/todo-app-server)
+
 ## Template provided by Academy Tech:<br/>
 
 This project was created using [Create React App](https://create-react-app.dev/)
