@@ -42,7 +42,7 @@ yarn start
 
 ## Backend server
 
-[Git repo to express server using PostgreSQL database](https://github.com/cynthiacodes/todo-app-server)
+[Git repo: express server using PostgreSQL database](https://github.com/cynthiacodes/todo-app-server)
 
 ## Template provided by Academy Tech:<br/>
 
