@@ -3,7 +3,6 @@
 ## About The Project
 
 A todo app that helps you get things done. It has edit, delete and complete functionality.
-Testing for gitpod.io
 
 ## Motivation
 
