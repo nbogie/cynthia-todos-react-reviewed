@@ -1,6 +1,6 @@
 import { Heading } from "@chakra-ui/react";
 import InputTodo from "./components/InputTodo";
-import ListTodo from "./components/ListTodo";
+import TodoList from "./components/TodoList";
 import { Footer } from "./components/Footer";
 
 export default function App(): JSX.Element {
@@ -10,7 +10,7 @@ export default function App(): JSX.Element {
         Get Things Done
       </Heading>
       <InputTodo />
-      <ListTodo />
+      <TodoList />
       <Footer />
     </>
   );

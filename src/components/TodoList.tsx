@@ -8,7 +8,7 @@ import { MdOutlineDelete } from "react-icons/md";
 import { IoEnterOutline } from "react-icons/io5";
 import { Button, Checkbox, Input } from "@chakra-ui/react";
 
-export default function ListTodo() {
+export default function TodoList() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [editTodo, setEditTodo] = useState<number | null>();
   const [newDescription, setNewDescription] = useState("");
