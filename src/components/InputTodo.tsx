@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { TodoItem } from "./TodoTaskType";
 import { apiBaseURL } from "../utils/apiBaseURL";
-import { Button, Input } from "@chakra-ui/react";
+import { Box, Button, Input } from "@chakra-ui/react";
 
 export default function InputTodo() {
   const [todoInput, setTodoInput] = useState<string>("");
@@ -30,18 +30,20 @@ export default function InputTodo() {
 
   return (
     <>
-      <form onSubmit={handleSubmitForm}>
-        <Input
-          type="text"
-          placeholder="write your todo here"
-          value={todoInput}
-          onChange={handleTodoInput}
-          htmlSize={50}
-          width="auto"
-          variant="outline"
-        />
-        <Button colorScheme="pink">Add</Button>
-      </form>
+      <Box w="100%" mb={8}>
+        <form onSubmit={handleSubmitForm}>
+          <Input
+            type="text"
+            placeholder="write your todo here"
+            value={todoInput}
+            onChange={handleTodoInput}
+            variant="outline"
+          />
+          <Button mt={4} colorScheme="pink">
+            Add
+          </Button>
+        </form>
+      </Box>
     </>
   );
 }
