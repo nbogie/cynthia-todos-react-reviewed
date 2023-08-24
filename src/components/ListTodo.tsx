@@ -109,7 +109,6 @@ export default function ListTodo() {
             placeholder={eachTodo.description}
             value={newDescription}
             onChange={handleEditInput}
-            className="todo-input"
           />
           <button onClick={() => handleSubmitEdit(eachTodo)}>
             <IoEnterOutline />

@@ -29,15 +29,14 @@ export default function InputTodo() {
 
   return (
     <>
-      <form className="todo-form" onSubmit={handleSubmitForm}>
+      <form onSubmit={handleSubmitForm}>
         <input
           type="text"
           placeholder="write your todo here"
           value={todoInput}
           onChange={handleTodoInput}
-          className="todo-input"
         />
-        <button className="todo-button">Add</button>
+        <button>Add</button>
       </form>
     </>
   );
