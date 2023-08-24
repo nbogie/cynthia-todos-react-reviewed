@@ -6,7 +6,7 @@ import { TodoDB, TodoItem } from "./TodoTaskType";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoEnterOutline } from "react-icons/io5";
-import { Button } from "@chakra-ui/react";
+import { Button, Checkbox, Input } from "@chakra-ui/react";
 
 export default function ListTodo() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -88,6 +88,7 @@ export default function ListTodo() {
         `${apiBaseURL}/todos/${todo.todoId}}`,
         todoData
       );
+      console.log("The following to-do has been updated", response.data);
       const updatedTodos = todos.map((existingTodo) =>
         existingTodo.todoId === todo.todoId
           ? { ...existingTodo, description: newDescription }
@@ -105,11 +106,14 @@ export default function ListTodo() {
     <div key={eachTodo.todoId}>
       {editTodo === eachTodo.todoId ? (
         <>
-          <input
+          <Input
             type="text"
             placeholder={eachTodo.description}
             value={newDescription}
             onChange={handleEditInput}
+            htmlSize={50}
+            width="auto"
+            variant="flushed"
           />
           <Button colorScheme="pink" onClick={() => handleSubmitEdit(eachTodo)}>
             <IoEnterOutline />
@@ -131,11 +135,13 @@ export default function ListTodo() {
         >
           <MdOutlineDelete />
         </Button>
-        <input
-          type="checkbox"
+
+        <Checkbox
+          size="lg"
+          colorScheme="pink"
+          isChecked={eachTodo.completed}
           onChange={() => toggleComplete(eachTodo)}
-          checked={eachTodo.completed}
-        />
+        ></Checkbox>
       </div>
     </div>
   ));
