@@ -38,8 +38,8 @@ yarn start
 - [x] Fetch todos from database and render the list of todos
 - [x] Complete a task and update the database
 - [x] Edit a todo task and update the database
+- [x] Add styling using Chakra UI
 - [ ] Ensure that it is not possible to submit a blank todo task
-- [ ] Add styling
 
 ## Backend server
 
