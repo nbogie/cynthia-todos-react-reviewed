@@ -6,7 +6,7 @@ import { TodoDB, TodoItem } from "./TodoTaskType";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoEnterOutline } from "react-icons/io5";
-import { Button, Checkbox, Input } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Input } from "@chakra-ui/react";
 
 export default function TodoList() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -102,7 +102,14 @@ export default function TodoList() {
   };
 
   const listAllTodos = todos.map((eachTodo) => (
-    <div key={eachTodo.todoId}>
+    <Box
+      key={eachTodo.todoId}
+      p={3}
+      mt={1}
+      border="1px"
+      borderColor="inherit"
+      borderRadius="md"
+    >
       {editTodo === eachTodo.todoId ? (
         <>
           <Input
@@ -119,30 +126,36 @@ export default function TodoList() {
           </Button>
         </>
       ) : (
-        <>{eachTodo.description}</>
+        <>
+          <Checkbox
+            size="lg"
+            colorScheme="pink"
+            isChecked={eachTodo.completed}
+            onChange={() => toggleComplete(eachTodo)}
+          ></Checkbox>
+          {eachTodo.description}
+        </>
       )}
 
-      <div>
-        <Button colorScheme="pink" onClick={() => setEditTodo(eachTodo.todoId)}>
-          <LuEdit />
-        </Button>
-        <Button
-          colorScheme="pink"
-          onClick={() => {
-            handleDelete(eachTodo.todoId as number);
-          }}
-        >
-          <MdOutlineDelete />
-        </Button>
-
-        <Checkbox
-          size="lg"
-          colorScheme="pink"
-          isChecked={eachTodo.completed}
-          onChange={() => toggleComplete(eachTodo)}
-        ></Checkbox>
-      </div>
-    </div>
+      <Button
+        size="sm"
+        ml={2}
+        colorScheme="pink"
+        onClick={() => setEditTodo(eachTodo.todoId)}
+      >
+        <LuEdit />
+      </Button>
+      <Button
+        size="sm"
+        ml={2}
+        colorScheme="pink"
+        onClick={() => {
+          handleDelete(eachTodo.todoId as number);
+        }}
+      >
+        <MdOutlineDelete />
+      </Button>
+    </Box>
   ));
   return <>{listAllTodos}</>;
 }
