@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { TodoItem } from "./TodoTaskType";
 import { apiBaseURL } from "../utils/apiBaseURL";
+import { Button } from "@chakra-ui/react";
 
 export default function InputTodo() {
   const [todoInput, setTodoInput] = useState<string>("");
@@ -36,7 +37,7 @@ export default function InputTodo() {
           value={todoInput}
           onChange={handleTodoInput}
         />
-        <button>Add</button>
+        <Button colorScheme="pink">Add</Button>
       </form>
     </>
   );

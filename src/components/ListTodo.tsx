@@ -6,6 +6,7 @@ import { TodoDB, TodoItem } from "./TodoTaskType";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoEnterOutline } from "react-icons/io5";
+import { Button } from "@chakra-ui/react";
 
 export default function ListTodo() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
@@ -110,25 +111,26 @@ export default function ListTodo() {
             value={newDescription}
             onChange={handleEditInput}
           />
-          <button onClick={() => handleSubmitEdit(eachTodo)}>
+          <Button colorScheme="pink" onClick={() => handleSubmitEdit(eachTodo)}>
             <IoEnterOutline />
-          </button>
+          </Button>
         </>
       ) : (
         <>{eachTodo.description}</>
       )}
 
       <div>
-        <button onClick={() => setEditTodo(eachTodo.todoId)}>
+        <Button colorScheme="pink" onClick={() => setEditTodo(eachTodo.todoId)}>
           <LuEdit />
-        </button>
-        <button
+        </Button>
+        <Button
+          colorScheme="pink"
           onClick={() => {
             handleDelete(eachTodo.todoId as number);
           }}
         >
           <MdOutlineDelete />
-        </button>
+        </Button>
         <input
           type="checkbox"
           onChange={() => toggleComplete(eachTodo)}
