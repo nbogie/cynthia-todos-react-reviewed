@@ -83,7 +83,6 @@ export default function ListTodo() {
         creationDate: todo.creationDate,
         completed: todo.completed,
       };
-      // eslint-disable-next-line
       const response = await axios.patch(
         `${apiBaseURL}/todos/${todo.todoId}}`,
         todoData
