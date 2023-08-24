@@ -40,8 +40,8 @@ export default function TodoList() {
 
   const handleDelete = async (todoId: number) => {
     try {
-      // eslint-disable-next-line
       const deleteTodo = await axios.delete(`${apiBaseURL}/todos/${todoId}}`);
+      console.log("The following to-do deleted", deleteTodo.data);
       const updatedTodos = todos.filter((todo) => todo.todoId !== todoId);
       setTodos(updatedTodos);
     } catch (error) {
@@ -56,11 +56,11 @@ export default function TodoList() {
         creationDate: todo.creationDate,
         completed: !todo.completed,
       };
-      // eslint-disable-next-line
       const response = await axios.patch(
         `${apiBaseURL}/todos/${todo.todoId}}`,
         todoData
       );
+      console.log("The following to-do task was updated", response.data);
       const updatedTodos = todos.map((existingTodo) =>
         existingTodo.todoId === todo.todoId
           ? { ...existingTodo, completed: !existingTodo.completed }
