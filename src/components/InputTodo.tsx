@@ -31,15 +31,20 @@ export default function InputTodo() {
   return (
     <>
       <Box w="100%" mb={8}>
-        <form onSubmit={handleSubmitForm}>
+        <form
+          onSubmit={handleSubmitForm}
+          style={{ display: "flex", alignItems: "baseline" }}
+        >
           <Input
             type="text"
-            placeholder="write your todo here"
+            placeholder="what do you want to get done?"
             value={todoInput}
             onChange={handleTodoInput}
             variant="outline"
+            flexGrow={1}
+            marginRight={2}
           />
-          <Button mt={4} colorScheme="pink">
+          <Button mt={4} colorScheme="pink" type="submit">
             Add
           </Button>
         </form>
