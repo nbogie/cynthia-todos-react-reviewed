@@ -7,11 +7,13 @@ import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
 import { IoEnterOutline } from "react-icons/io5";
 import { Box, Button, Checkbox, Input } from "@chakra-ui/react";
+import InputTodo from "./InputTodo";
 
 export default function TodoList() {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [editTodo, setEditTodo] = useState<number | null>();
   const [newDescription, setNewDescription] = useState("");
+
   const getTodos = async () => {
     try {
       const response = await axios.get(apiBaseURL + "/todos");
@@ -40,8 +42,10 @@ export default function TodoList() {
 
   const handleDelete = async (todoId: number) => {
     try {
-      const deleteTodo = await axios.delete(`${apiBaseURL}/todos/${todoId}}`);
-      console.log("The following to-do deleted", deleteTodo.data);
+      const url = `${apiBaseURL}/todos/${todoId}`;
+      console.log("deleting with url", { url });
+      const axiosResponse = await axios.delete(url);
+      console.log("The following to-do deleted", axiosResponse.data);
       const updatedTodos = todos.filter((todo) => todo.todoId !== todoId);
       setTodos(updatedTodos);
     } catch (error) {
@@ -157,5 +161,10 @@ export default function TodoList() {
       </Button>
     </Box>
   ));
-  return <>{listAllTodos}</>;
+  return (
+    <>
+      <InputTodo onAdd={() => getTodos()} />
+      {listAllTodos}
+    </>
+  );
 }

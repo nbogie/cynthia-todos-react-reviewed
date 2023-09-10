@@ -5,7 +5,11 @@ import { TodoItem } from "./TodoTaskType";
 import { apiBaseURL } from "../utils/apiBaseURL";
 import { Box, Button, Input } from "@chakra-ui/react";
 
-export default function InputTodo() {
+interface InputTodoProps {
+  onAdd: () => void;
+}
+
+export default function InputTodo({ onAdd }: InputTodoProps) {
   const [todoInput, setTodoInput] = useState<string>("");
 
   const handleSubmitForm = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -19,6 +23,7 @@ export default function InputTodo() {
       setTodoInput("");
       const response = await axios.post(apiBaseURL + "/todos", todoData);
       console.log("The following todo has been added", response.data);
+      onAdd();
     } catch (error) {
       console.error(getErrorMessage(error));
     }
