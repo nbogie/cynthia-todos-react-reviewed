@@ -26,6 +26,7 @@ export function OneTodoView({
       border="1px"
       borderColor="inherit"
       borderRadius="md"
+      w={"50rem"}
     >
       {isSelectedForEdit ? (
         <OneTodoEditView {...{ todo, todoOps, handleSelectForEditing }} />

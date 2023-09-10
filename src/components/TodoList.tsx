@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTodosFromAPI } from "../hooks/useTodosFromAPI";
 import NewTodoInputForm from "./NewTodoInputForm";
 import { OneTodoView } from "./OneTodo/OneTodoView";
+import { VStack } from "@chakra-ui/react";
 
 export default function TodoList() {
   const [selectedIdForEditing, setSelectedIdForEditing] = useState<
@@ -14,17 +15,19 @@ export default function TodoList() {
     <>
       <NewTodoInputForm onAdd={todoOps.add} />
 
-      {todos.map((todo) => (
-        <OneTodoView
-          key={todo.id}
-          {...{
-            todo,
-            todoOps,
-            handleSelectForEditing: setSelectedIdForEditing,
-            isSelectedForEdit: selectedIdForEditing === todo.id,
-          }}
-        />
-      ))}
+      <VStack align="start" w={"50rem"}>
+        {todos.map((todo) => (
+          <OneTodoView
+            key={todo.id}
+            {...{
+              todo,
+              todoOps,
+              handleSelectForEditing: setSelectedIdForEditing,
+              isSelectedForEdit: selectedIdForEditing === todo.id,
+            }}
+          />
+        ))}
+      </VStack>
     </>
   );
 }
