@@ -15,7 +15,7 @@ export function OneTodoEditView({
   todoOps,
   handleSelectForEditing,
 }: OneTodoEditViewProps) {
-  const [newDescription, setNewDescription] = useState("");
+  const [newDescription, setNewDescription] = useState(todo.description);
 
   const handleEditInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewDescription(event.target.value);
