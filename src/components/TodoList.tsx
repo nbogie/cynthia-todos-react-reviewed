@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTodosFromAPI } from "../hooks/useTodosFromAPI";
 import NewTodoInputForm from "./NewTodoInputForm";
-import { OneTodoView } from "./OneTodoView";
+import { OneTodoView } from "./OneTodo/OneTodoView";
 
 export default function TodoList() {
   const [selectedIdForEditing, setSelectedIdForEditing] = useState<
