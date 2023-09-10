@@ -20,7 +20,7 @@ export function OneTodoView({
 }: OneTodoViewProps) {
   return (
     <Box
-      key={todo.todoId}
+      key={todo.id}
       p={3}
       mt={1}
       border="1px"
@@ -45,7 +45,7 @@ export function OneTodoView({
         size="sm"
         ml={2}
         colorScheme="pink"
-        onClick={() => handleSelectForEditing(todo.todoId)}
+        onClick={() => handleSelectForEditing(todo.id)}
       >
         <LuEdit />
       </Button>

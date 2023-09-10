@@ -16,12 +16,12 @@ export default function TodoList() {
 
       {todos.map((todo) => (
         <OneTodoView
-          key={todo.todoId}
+          key={todo.id}
           {...{
             todo,
             todoOps,
             handleSelectForEditing: setSelectedIdForEditing,
-            isSelectedForEdit: selectedIdForEditing === todo.todoId,
+            isSelectedForEdit: selectedIdForEditing === todo.id,
           }}
         />
       ))}

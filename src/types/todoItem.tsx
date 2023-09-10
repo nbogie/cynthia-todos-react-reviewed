@@ -1,5 +1,5 @@
 export interface TodoItem {
-  todoId: number;
+  id: number;
   description: string;
   creationDate: string;
   completed: boolean;
@@ -19,13 +19,13 @@ export interface TodoDB {
 
 export function convertFromDBTodoToAppTodo(todo: TodoDB): TodoItem {
   const {
-    todo_id: todoId,
+    todo_id: id,
     description,
     creation_date: creationDate,
     completed,
   } = todo;
   return {
-    todoId,
+    id,
     description,
     creationDate,
     completed,
