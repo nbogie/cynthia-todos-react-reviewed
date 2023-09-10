@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   DraftTodoItem,
@@ -6,8 +5,8 @@ import {
   TodoItem,
   convertFromDBTodoToAppTodo,
 } from "../types/todoItem";
-import { apiBaseURL } from "../utils/apiBaseURL";
 import getErrorMessage from "../utils/getErrorMessage";
+import * as api from "../api/todosAPI";
 
 export interface TodoOps {
   delete: (todo: TodoItem) => void;
@@ -22,7 +21,7 @@ export function useTodosFromAPI(): { todos: TodoItem[]; todoOps: TodoOps } {
 
   const fetchAndStoreTODOsFromAPI = async () => {
     try {
-      const response = await axios.get(apiBaseURL + "/todos");
+      const response = await api.getAllTodos();
       const allTodoData = response.data.map((todo: TodoDB) =>
         convertFromDBTodoToAppTodo(todo)
       );
@@ -38,8 +37,7 @@ export function useTodosFromAPI(): { todos: TodoItem[]; todoOps: TodoOps } {
 
   const handleDelete = async (todo: TodoItem) => {
     try {
-      const url = `${apiBaseURL}/todos/${todo.id}`;
-      await axios.delete(url);
+      await api.deleteTodo(todo);
       await fetchAndStoreTODOsFromAPI();
     } catch (error) {
       console.error(getErrorMessage(error));
@@ -47,7 +45,7 @@ export function useTodosFromAPI(): { todos: TodoItem[]; todoOps: TodoOps } {
   };
   async function handleAdd(todo: DraftTodoItem) {
     try {
-      await axios.post(apiBaseURL + "/todos", todo);
+      await api.addTodo(todo);
       await fetchAndStoreTODOsFromAPI();
     } catch (error) {
       console.error(getErrorMessage(error));
@@ -57,7 +55,7 @@ export function useTodosFromAPI(): { todos: TodoItem[]; todoOps: TodoOps } {
   const handleSubmitEdit = async (todo: TodoItem, newDescription: string) => {
     try {
       const todoData: TodoItem = { ...todo, description: newDescription };
-      await axios.patch(`${apiBaseURL}/todos/${todo.id}`, todoData);
+      await api.updateTodo(todoData);
       await fetchAndStoreTODOsFromAPI();
     } catch (error) {
       console.error(getErrorMessage(error));
@@ -67,7 +65,7 @@ export function useTodosFromAPI(): { todos: TodoItem[]; todoOps: TodoOps } {
   const handleToggleComplete = async (todo: TodoItem) => {
     try {
       const todoData: TodoItem = { ...todo, completed: !todo.completed };
-      await axios.patch(`${apiBaseURL}/todos/${todo.id}`, todoData);
+      await api.updateTodo(todoData);
       await fetchAndStoreTODOsFromAPI();
     } catch (error) {
       console.error(getErrorMessage(error));
