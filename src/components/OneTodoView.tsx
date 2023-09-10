@@ -1,15 +1,13 @@
-import { Box, Button, Checkbox, Input } from "@chakra-ui/react";
-import { useState } from "react";
-import { IoEnterOutline } from "react-icons/io5";
+import { Box, Button, Checkbox } from "@chakra-ui/react";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
 import { TodoItem } from "../TodoTaskType";
 import { TodoOps } from "../hooks/useTodosFromAPI";
+import { OneTodoEditView } from "./OneTodoEditView";
 
 interface OneTodoViewProps {
   todo: TodoItem;
   todoOps: TodoOps;
-
   handleSelectForEditing: (todo: number | null) => void;
   isSelectedForEdit: boolean;
 }
@@ -20,12 +18,6 @@ export function OneTodoView({
   handleSelectForEditing,
   isSelectedForEdit,
 }: OneTodoViewProps) {
-  const [newDescription, setNewDescription] = useState("");
-
-  const handleEditInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewDescription(event.target.value);
-  };
-
   return (
     <Box
       key={todo.todoId}
@@ -36,28 +28,7 @@ export function OneTodoView({
       borderRadius="md"
     >
       {isSelectedForEdit ? (
-        <>
-          <Input
-            type="text"
-            placeholder={todo.description}
-            value={newDescription}
-            onChange={handleEditInput}
-            htmlSize={50}
-            width="auto"
-            variant="flushed"
-          />
-
-          <Button
-            colorScheme="pink"
-            onClick={() => {
-              todoOps.submitEdit(todo, newDescription);
-              setNewDescription("");
-              handleSelectForEditing(null);
-            }}
-          >
-            <IoEnterOutline />
-          </Button>
-        </>
+        <OneTodoEditView {...{ todo, todoOps, handleSelectForEditing }} />
       ) : (
         <>
           <Checkbox
