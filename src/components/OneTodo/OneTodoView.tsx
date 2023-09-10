@@ -1,7 +1,7 @@
 import { Box, Button, Checkbox } from "@chakra-ui/react";
 import { LuEdit } from "react-icons/lu";
 import { MdOutlineDelete } from "react-icons/md";
-import { TodoItem } from "../../TodoTaskType";
+import { TodoItem } from "../../types/todoItem";
 import { TodoOps } from "../../hooks/useTodosFromAPI";
 import { OneTodoEditView } from "./OneTodoEditView";
 

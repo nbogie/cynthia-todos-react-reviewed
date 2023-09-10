@@ -1,6 +1,6 @@
 import { Box, Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
-import { DraftTodoItem } from "../TodoTaskType";
+import { DraftTodoItem } from "../types/todoItem";
 
 interface NewTodoInputFormProps {
   onAdd: (todo: DraftTodoItem) => void;

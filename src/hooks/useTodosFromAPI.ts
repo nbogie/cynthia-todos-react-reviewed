@@ -5,7 +5,7 @@ import {
   TodoDB,
   TodoItem,
   convertFromDBTodoToAppTodo,
-} from "../TodoTaskType";
+} from "../types/todoItem";
 import { apiBaseURL } from "../utils/apiBaseURL";
 import getErrorMessage from "../utils/getErrorMessage";
 

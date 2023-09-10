@@ -1,7 +1,7 @@
 import { Button, Input } from "@chakra-ui/react";
 import { useState } from "react";
 import { IoEnterOutline } from "react-icons/io5";
-import { TodoItem } from "../../TodoTaskType";
+import { TodoItem } from "../../types/todoItem";
 import { TodoOps } from "../../hooks/useTodosFromAPI";
 
 interface OneTodoEditViewProps {
